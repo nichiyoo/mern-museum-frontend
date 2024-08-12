@@ -123,7 +123,7 @@ const EditCollectionForm = ({ collection }) => {
 
 			toast({
 				title: 'Success',
-				description: data?.message || 'Data submitted successfully',
+				description: data?.message || 'Collection updated succesfully',
 				variant: 'success',
 			});
 

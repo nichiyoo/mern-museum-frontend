@@ -47,12 +47,20 @@ const CreateUserForm = () => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Creating user...',
+				variant: 'info',
+			});
+
 			const { data } = await axios.post('users', formData);
+
 			toast({
 				title: 'Success',
 				description: data?.message || 'User created successfully',
 				variant: 'success',
 			});
+
 			navigate('/admin/user');
 		} catch (error) {
 			if (isAxiosError(error)) {

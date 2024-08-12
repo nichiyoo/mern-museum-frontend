@@ -47,8 +47,15 @@ const useUser = () => {
 		setError(null);
 
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Deleting user...',
+				variant: 'default',
+			});
+
 			await axios.delete('users/' + id);
 			setUsers(users.filter((user) => user._id !== id));
+
 			toast({
 				title: 'Success',
 				description: 'User deleted successfully',
@@ -81,7 +88,9 @@ const useUser = () => {
 
 		try {
 			const { data } = await axios.put('users/' + id, updatedData);
+
 			setUsers(users.map((user) => (user._id === id ? data.data : user)));
+
 			toast({
 				title: 'Success',
 				description: 'User updated successfully',

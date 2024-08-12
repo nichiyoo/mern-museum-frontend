@@ -57,12 +57,20 @@ const TicketForm = () => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Creating ticket...',
+				variant: 'default',
+			});
+
 			await axios.post('tickets', formData);
+
 			toast({
 				title: 'Success',
 				description: 'Data submitted successfully',
 				status: 'success',
 			});
+
 			form.reset();
 		} catch (error) {
 			if (isAxiosError(error)) {

@@ -36,6 +36,12 @@ const LoginPage = () => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Authenticating user...',
+				variant: 'default',
+			});
+
 			const { data } = await axios.post('users/login', formData);
 			localStorage.setItem('token', data.token);
 
@@ -44,6 +50,7 @@ const LoginPage = () => {
 				description: 'You have successfully logged in',
 				status: 'success',
 			});
+
 			navigate('/admin');
 		} catch (err) {
 			if (isAxiosError(err)) {

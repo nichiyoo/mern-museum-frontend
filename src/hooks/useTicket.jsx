@@ -47,8 +47,15 @@ const useTicket = () => {
 		setError(null);
 
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Deleting ticket...',
+				variant: 'default',
+			});
+
 			await axios.delete('tickets/' + id);
 			setTickets(tickets.filter((ticket) => ticket._id !== id));
+
 			toast({
 				title: 'Success',
 				description: 'Collection deleted successfully',

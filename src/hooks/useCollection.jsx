@@ -52,10 +52,17 @@ const useCollection = () => {
 		setError(null);
 
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Deleting collection...',
+				variant: 'default',
+			});
+
 			await axios.delete('collections/' + id);
 			setCollections(
 				collections.filter((collection) => collection._id !== id)
 			);
+
 			toast({
 				title: 'Success',
 				description: 'Collection deleted successfully',

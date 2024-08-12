@@ -48,12 +48,20 @@ const EditUserForm = ({ user }) => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Updating user...',
+				variant: 'subtle',
+			});
+
 			const { data } = await axios.put('users/' + user._id, formData);
+
 			toast({
 				title: 'Success',
 				description: data?.message || 'User updated successfully',
 				variant: 'success',
 			});
+
 			navigate('/admin/user');
 		} catch (error) {
 			if (isAxiosError(error)) {

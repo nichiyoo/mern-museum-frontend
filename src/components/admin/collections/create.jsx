@@ -79,6 +79,12 @@ const CreateCollectionForm = () => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Creating collection...',
+				variant: 'default',
+			});
+
 			const { data } = await axios.post(
 				'collections',
 				{
@@ -94,11 +100,13 @@ const CreateCollectionForm = () => {
 					},
 				}
 			);
+
 			toast({
 				title: 'Success',
 				description: data?.message || 'Data submitted successfully',
 				variant: 'success',
 			});
+
 			navigate('/admin/collection');
 		} catch (error) {
 			if (isAxiosError(error)) {

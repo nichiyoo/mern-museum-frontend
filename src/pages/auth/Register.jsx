@@ -38,12 +38,20 @@ const RegisterPage = () => {
 
 	const onSubmit = async (formData) => {
 		try {
+			toast({
+				title: 'Loading',
+				description: 'Registering user...',
+				variant: 'default',
+			});
+
 			await axios.post('users/register', formData);
+
 			toast({
 				title: 'Register successfully',
 				description: 'You have successfully registered',
 				status: 'success',
 			});
+
 			navigate('/login');
 		} catch (err) {
 			if (isAxiosError(err)) {
