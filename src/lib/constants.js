@@ -1,4 +1,4 @@
-import { Home, Package, Ticket, User } from 'lucide-react';
+import { Home, Package, User } from 'lucide-react';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,7 +12,6 @@ export const ROUTES = {
 	],
 	admin: [
 		{ path: '/admin/dashboard', label: 'menu.dashboard', icon: Home },
-		{ path: '/admin/ticket', label: 'menu.ticket', icon: Ticket },
 		{ path: '/admin/collection', label: 'menu.collection', icon: Package },
 		{ path: '/admin/user', label: 'User', icon: User },
 	],

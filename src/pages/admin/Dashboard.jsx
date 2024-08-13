@@ -19,7 +19,6 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/header';
 import StatisticCard from '@/components/statistic-card';
-// import { formatCurrency } from '@/lib/utils';
 import useCollection from '@/hooks/useCollection';
 import { useNavigate } from 'react-router-dom';
 import useUser from '@/hooks/useUser';
@@ -73,90 +72,88 @@ const DashboardPage = () => {
 				))}
 			</div>
 
-			<div className='grid items-start gap-4 md:gap-8 lg:grid-cols-1 xl:grid-cols-2'>
-				<div className='grid gap-4 md:gap-8'>
-					<Card className='w-full'>
-						<CardHeader className='flex flex-row items-center'>
-							<div className='grid gap-2'>
-								<CardTitle>User Terbaru</CardTitle>
-								<CardDescription>
-									User Terbaru yang telah dibuat.
-								</CardDescription>
-							</div>
-						</CardHeader>
-						<CardContent>
-							<Table>
-								<TableHeader>
-									<TableRow>
-										<TableHead>Nama</TableHead>
-										<TableHead className='text-right'>
-											Email
-										</TableHead>
+			<div className='grid gap-4 md:gap-8'>
+				<Card className='w-full'>
+					<CardHeader className='flex flex-row items-center'>
+						<div className='grid gap-2'>
+							<CardTitle>User Terbaru</CardTitle>
+							<CardDescription>
+								User Terbaru yang telah dibuat.
+							</CardDescription>
+						</div>
+					</CardHeader>
+					<CardContent>
+						<Table>
+							<TableHeader>
+								<TableRow>
+									<TableHead>Nama</TableHead>
+									<TableHead className='text-right'>
+										Email
+									</TableHead>
+								</TableRow>
+							</TableHeader>
+							<TableBody>
+								{users.map((user) => (
+									<TableRow
+										key={user._id}
+										className='bg-white'>
+										<TableCell className='font-medium'>
+											{user.name}
+										</TableCell>
+										<TableCell className='text-right'>
+											{user.email}
+										</TableCell>
 									</TableRow>
-								</TableHeader>
-								<TableBody>
-									{users.map((user) => (
-										<TableRow
-											key={user._id}
-											className='bg-white'>
-											<TableCell className='font-medium'>
-												{user.name}
-											</TableCell>
-											<TableCell className='text-right'>
-												{user.email}
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
-						</CardContent>
-					</Card>
+								))}
+							</TableBody>
+						</Table>
+					</CardContent>
+				</Card>
 
-					<Card className='w-full'>
-						<CardHeader className='flex flex-row items-center'>
-							<div className='grid gap-2'>
-								<CardTitle>Koleksi Terbaru</CardTitle>
-								<CardDescription>
-									Koleksi Terbaru yang telah dibuat.
-								</CardDescription>
-							</div>
-						</CardHeader>
-						<CardContent>
-							<Table>
-								<TableHeader>
-									<TableRow>
-										<TableHead>Judul</TableHead>
-										<TableHead className='text-right'>
-											Kategori
-										</TableHead>
-										<TableHead className='text-right'>
-											Tahun
-										</TableHead>
+				<Card className='w-full'>
+					<CardHeader className='flex flex-row items-center'>
+						<div className='grid gap-2'>
+							<CardTitle>Koleksi Terbaru</CardTitle>
+							<CardDescription>
+								Koleksi Terbaru yang telah dibuat.
+							</CardDescription>
+						</div>
+					</CardHeader>
+					<CardContent>
+						<Table>
+							<TableHeader>
+								<TableRow>
+									<TableHead>Judul</TableHead>
+									<TableHead className='text-right'>
+										Kategori
+									</TableHead>
+									<TableHead className='text-right'>
+										Tahun
+									</TableHead>
+								</TableRow>
+							</TableHeader>
+							<TableBody>
+								{collections.map((collection) => (
+									<TableRow
+										key={collection._id}
+										className='bg-white'>
+										<TableCell className='font-medium'>
+											{collection.judul_id ||
+												collection.judul_en ||
+												collection.judul_sasak}
+										</TableCell>
+										<TableCell className='text-right'>
+											<Badge>{collection.kategori}</Badge>
+										</TableCell>
+										<TableCell className='text-right'>
+											{collection.tahun}
+										</TableCell>
 									</TableRow>
-								</TableHeader>
-								<TableBody>
-									{collections.map((collection) => (
-										<TableRow
-											key={collection._id}
-											className='bg-white'>
-											<TableCell className='font-medium'>
-												{collection.judul_id || collection.judul_en || collection.judul_sasak}
-											</TableCell>
-											<TableCell className='text-right'>
-												<Badge>
-													{collection.kategori}
-												</Badge>
-											</TableCell>
-											<TableCell className='text-right'>
-												{collection.tahun}
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
-						</CardContent>
-					</Card>
-				</div>
+								))}
+							</TableBody>
+						</Table>
+					</CardContent>
+				</Card>
 			</div>
 		</div>
 	);

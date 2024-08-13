@@ -3,7 +3,6 @@ import {
 	EditCollection,
 	TableCollection,
 } from '@/pages/admin/collections';
-import { AddTicket, TableTicket } from '@/pages/admin/tickets';
 import { AddUser, EditUser, TableUser } from '@/pages/admin/users';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { DetailCollection, ListCollection } from '@/pages/user/collections';
@@ -28,6 +27,7 @@ const Router = () => {
 					<Route path='about' element={<AboutPage />} />
 					<Route path='visit' element={<KunjunganPage />} />
 					<Route path='contact' element={<ContactPage />} />
+
 					<Route path='collection'>
 						<Route index element={<ListCollection />} />
 						<Route path=':id' element={<DetailCollection />} />
@@ -36,19 +36,12 @@ const Router = () => {
 
 				<Route path='/auth'>
 					<Route path='login' element={<LoginPage />} />
-
-
 				</Route>
 
 				<Route path='/admin' element={<AdminLayout />}>
 					<Route index element={<Navigate to='/admin/dashboard' />} />
 					<Route path='dashboard' element={<DashboardPage />} />
 					<Route path='profile' element={<ProfilePage />} />
-
-					<Route path='ticket'>
-						<Route index element={<TableTicket />} />
-						<Route path='create' element={<AddTicket />} />
-					</Route>
 
 					<Route path='collection'>
 						<Route index element={<TableCollection />} />

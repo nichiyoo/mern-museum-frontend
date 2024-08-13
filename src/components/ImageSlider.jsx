@@ -24,7 +24,7 @@ const ImageSlider = () => {
 				{images.map((image, index) => (
 					<div key={index}>
 						<img
-							src={image?.url}
+							src={image}
 							alt={`Slide ${index + 1}`}
 							className='object-cover w-full h-full'
 						/>
