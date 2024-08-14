@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import CloudinaryUpload from '@/components/CloudinaryUpload';
 
 const collectionSchema = z.object({
 	judul_id: z.string().min(6),
@@ -33,16 +34,16 @@ const collectionSchema = z.object({
 	tag: z.string().min(4),
 	kategori: z.string().min(4),
 	tahun: z.coerce.number().min(1900).max(new Date().getFullYear()),
-	image: z.any(),
-	referensi: z.string().min(4), // Tambahkan field referensi
+	referensi: z.string().min(4),
 
 	deskripsi_en: z.string().min(20),
 	deskripsi_id: z.string().min(20),
 	deskripsi_sasak: z.string().min(20),
 
-	audio_id: z.any(),
-	audio_en: z.any(),
-	audio_sasak: z.any(),
+	image: z.string().url(),
+	audio_id: z.string().url(),
+	audio_en: z.string().url(),
+	audio_sasak: z.string().url(),
 });
 
 const CreateCollectionForm = () => {
@@ -59,23 +60,18 @@ const CreateCollectionForm = () => {
 			tag: '',
 			kategori: '',
 			tahun: new Date().getFullYear(),
-			referensi: '', // Tambahkan default value untuk referensi
-			image: '',
+			referensi: '',
 
 			deskripsi_en: '',
 			deskripsi_id: '',
 			deskripsi_sasak: '',
 
+			image: '',
 			audio_id: '',
 			audio_en: '',
 			audio_sasak: '',
 		},
 	});
-
-	const imageRef = form.register('image');
-	const audio_idRef = form.register('audio_id');
-	const audio_enRef = form.register('audio_en');
-	const audio_sasakRef = form.register('audio_sasak');
 
 	const onSubmit = async (formData) => {
 		try {
@@ -85,21 +81,7 @@ const CreateCollectionForm = () => {
 				variant: 'default',
 			});
 
-			const { data } = await axios.post(
-				'collections',
-				{
-					...formData,
-					image: formData.image[0],
-					audio_id: formData.audio_id[0],
-					audio_en: formData.audio_en[0],
-					audio_sasak: formData.audio_sasak[0],
-				},
-				{
-					headers: {
-						'Content-Type': 'multipart/form-data',
-					},
-				}
-			);
+			const { data } = await axios.post('collections', formData);
 
 			toast({
 				title: 'Success',
@@ -128,9 +110,7 @@ const CreateCollectionForm = () => {
 
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				encType='multipart/form-data'>
+			<form onSubmit={form.handleSubmit(onSubmit)}>
 				<div className='grid items-start gap-8 mb-8 lg:grid-cols-5'>
 					<Card className='lg:col-span-3'>
 						<CardHeader>
@@ -363,16 +343,16 @@ const CreateCollectionForm = () => {
 								<FormField
 									control={form.control}
 									name='image'
-									render={() => (
+									render={({ field: { onChange } }) => (
 										<FormItem>
 											<FormLabel>
 												Gambar Koleksi
 											</FormLabel>
 											<FormControl>
-												<Input
-													type='file'
-													placeholder='Gambar Koleksi'
-													{...imageRef}
+												<CloudinaryUpload
+													accept='image/*'
+													asset_folder='collections'
+													onChange={onChange}
 												/>
 											</FormControl>
 											<FormMessage />
@@ -383,15 +363,16 @@ const CreateCollectionForm = () => {
 								<FormField
 									control={form.control}
 									name='audio_id'
-									render={() => (
+									render={({ field: { onChange } }) => (
 										<FormItem>
 											<FormLabel>
 												Audio dalam Bahasa Indonesia
 											</FormLabel>
 											<FormControl>
-												<Input
-													type='file'
-													{...audio_idRef}
+												<CloudinaryUpload
+													accept='audio/*'
+													asset_folder='collections'
+													onChange={onChange}
 												/>
 											</FormControl>
 											<FormMessage />
@@ -402,15 +383,16 @@ const CreateCollectionForm = () => {
 								<FormField
 									control={form.control}
 									name='audio_en'
-									render={() => (
+									render={({ field: { onChange } }) => (
 										<FormItem>
 											<FormLabel>
 												Audio dalam Bahasa Inggris
 											</FormLabel>
 											<FormControl>
-												<Input
-													type='file'
-													{...audio_enRef}
+												<CloudinaryUpload
+													accept='audio/*'
+													asset_folder='collections'
+													onChange={onChange}
 												/>
 											</FormControl>
 											<FormMessage />
@@ -421,15 +403,16 @@ const CreateCollectionForm = () => {
 								<FormField
 									control={form.control}
 									name='audio_sasak'
-									render={() => (
+									render={({ field: { onChange } }) => (
 										<FormItem>
 											<FormLabel>
 												Audio dalam Bahasa Sasak
 											</FormLabel>
 											<FormControl>
-												<Input
-													type='file'
-													{...audio_sasakRef}
+												<CloudinaryUpload
+													accept='audio/*'
+													asset_folder='collections'
+													onChange={onChange}
 												/>
 											</FormControl>
 											<FormMessage />

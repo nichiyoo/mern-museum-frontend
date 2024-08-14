@@ -36,7 +36,8 @@ const CollectionTable = ({ collections, handleDelete }) => {
 
 	const handleDownload = async (collectionId) => {
 		try {
-			const dataUrl = await QRCodeLib.toDataURL(collectionId, {
+			const url = `${window.location.origin}/collection/${collectionId}`;
+			const dataUrl = QRCodeLib.toDataURL(url, {
 				width: 256,
 				height: 256,
 			});
@@ -91,7 +92,7 @@ const CollectionTable = ({ collections, handleDelete }) => {
 								<TableCell className='hidden md:table-cell'>
 									<div className='p-2 border rounded-lg border-zinc-200'>
 										<img
-											src={collection.image?.url}
+											src={collection.image}
 											alt={collection.judul_id}
 											className='object-cover w-32 rounded-md aspect-square'
 										/>
@@ -124,7 +125,10 @@ const CollectionTable = ({ collections, handleDelete }) => {
 									</p>
 								</TableCell>
 								<TableCell className='hidden md:table-cell'>
-									<QRCode value={collection._id} size={64} />
+									<QRCode
+										value={`${window.location.origin}/collection/${collection._id}`}
+										size={64}
+									/>
 								</TableCell>
 								<TableCell>
 									<DropdownMenu>

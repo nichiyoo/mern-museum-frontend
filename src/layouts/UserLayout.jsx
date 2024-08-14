@@ -4,13 +4,13 @@ import { Outlet } from 'react-router-dom';
 
 export function UserLayout() {
 	return (
-		<div>
+		<>
 			<Navbar />
 			<div className='min-h-screen'>
 				<Outlet />
 			</div>
 			<Footer />
-		</div>
+		</>
 	);
 }
 

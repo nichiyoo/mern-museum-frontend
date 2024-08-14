@@ -26,6 +26,7 @@ const authSchema = z.object({
 const LoginPage = () => {
 	const { toast } = useToast();
 	const navigate = useNavigate();
+
 	const form = useForm({
 		resolver: zodResolver(authSchema),
 		defaultValues: {
@@ -139,7 +140,7 @@ const LoginPage = () => {
 					</Form>
 					<div className='mt-4 text-sm'>
 						Don&apos;t have an account?{' '}
-						<Link to='/register' className='underline'>
+						<Link to='/auth/register' className='underline'>
 							Sign up
 						</Link>
 					</div>

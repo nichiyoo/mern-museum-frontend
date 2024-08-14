@@ -15,6 +15,7 @@ import HomePage from '@/pages/user/HomePage';
 import KunjunganPage from '@/pages/user/KunjunganPage';
 import LoginPage from '@/pages/auth/Login';
 import ProfilePage from '@/pages/admin/Profile';
+import TestPage from '@/pages/admin/Upload';
 import UserLayout from '@/layouts/UserLayout';
 
 const Router = () => {
@@ -24,6 +25,7 @@ const Router = () => {
 				<Route path='/' element={<UserLayout />}>
 					<Route index element={<Navigate to='/home' />} />
 					<Route path='home' element={<HomePage />} />
+					<Route path='test' element={<TestPage />} />
 					<Route path='about' element={<AboutPage />} />
 					<Route path='visit' element={<KunjunganPage />} />
 					<Route path='contact' element={<ContactPage />} />

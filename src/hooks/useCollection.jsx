@@ -18,12 +18,7 @@ const useCollection = () => {
 		const fetchData = async () => {
 			try {
 				const { data } = await axios.get('collections');
-
-				setCollections(
-					data.data.map((collection) => ({
-						...collection,
-					}))
-				);
+				setCollections(data.data);
 			} catch (error) {
 				if (isAxiosError(error)) {
 					toast({

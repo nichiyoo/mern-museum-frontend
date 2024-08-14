@@ -120,7 +120,7 @@ const DetailCollection = () => {
 					</div>
 
 					<audio controls ref={audioRef} className='w-full'>
-						<source src={audio?.url} type='audio/mpeg' />
+						<source src={audio} type='audio/mpeg' />
 						Your browser does not support the audio element.
 					</audio>
 				</div>
@@ -128,7 +128,7 @@ const DetailCollection = () => {
 				<div className='order-first space-y-10 lg:order-last'>
 					<div className='w-full bg-zinc-100 aspect-square'>
 						<img
-							src={collection.image?.url}
+							src={collection.image}
 							alt={judul}
 							className='object-cover w-full h-full'
 						/>

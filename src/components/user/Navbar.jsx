@@ -25,7 +25,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className='relative'>
+		<nav className='relative'>
 			<div className='fixed top-0 left-0 z-40 flex flex-row items-center justify-between w-full px-10 py-2 bg-white border-b lg:flex-row border-slate-200'>
 				<Logo />
 				<div className='items-center hidden space-x-10 text-sm font-semibold lg:flex'>
@@ -82,7 +82,7 @@ const Navbar = () => {
 			</div>
 
 			<ScanModal isOpen={isScanOpen} onClose={toggleScan} />
-		</div>
+		</nav>
 	);
 };
 

@@ -34,7 +34,7 @@ const CardCollection = ({ collection }) => {
 
 			<div className='w-full bg-zinc-100 aspect-square'>
 				<img
-					src={collection.image?.url}
+					src={collection.image}
 					alt={judul}
 					className='object-cover w-full h-full'
 				/>

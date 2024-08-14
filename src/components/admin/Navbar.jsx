@@ -12,7 +12,7 @@ const Navbar = () => {
 	const { t } = useTranslation();
 
 	return (
-		<header className='sticky top-0 z-30 flex items-center justify-between h-16 gap-4 py-3 border-b lg:static lg:justify-end bg-background lg:border-0 lg:bg-transparent w-content'>
+		<nav className='sticky top-0 z-30 flex items-center justify-between h-16 gap-4 py-3 border-b lg:static lg:justify-end bg-background lg:border-0 lg:bg-transparent w-content'>
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button size='icon' variant='outline' className='lg:hidden'>
@@ -37,7 +37,7 @@ const Navbar = () => {
 			</Sheet>
 
 			<UserDropdown />
-		</header>
+		</nav>
 	);
 };
 

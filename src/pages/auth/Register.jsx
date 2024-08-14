@@ -52,7 +52,7 @@ const RegisterPage = () => {
 				status: 'success',
 			});
 
-			navigate('/login');
+			navigate('/auth/login');
 		} catch (err) {
 			if (isAxiosError(err)) {
 				toast({
@@ -152,7 +152,7 @@ const RegisterPage = () => {
 
 					<div className='mt-4 text-sm'>
 						Already have an account?{' '}
-						<Link to='/login' className='underline'>
+						<Link to='/auth/login' className='underline'>
 							Sign in
 						</Link>
 					</div>
